@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>MeatEngine.Math.Voronoi.quadedge</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="MeatEngine-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="MeatEngine-module.html">Package&nbsp;MeatEngine</a> ::
+        <a href="MeatEngine.Math-module.html">Package&nbsp;Math</a> ::
+        <a href="MeatEngine.Math.Voronoi-module.html">Package&nbsp;Voronoi</a> ::
+        Module&nbsp;quadedge
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="MeatEngine.Math.Voronoi.quadedge-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="MeatEngine.Math.Voronoi.quadedge-module.html">Module MeatEngine.Math.Voronoi.quadedge</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">""" Quadedge data structure, after Guibas and Stolfi</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring">Transcribed from Graphics Gems IV</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">sym: "symmetric" of edge, the edge that points in the opposite</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">direction (when viewed from the same orientation of the manifold).</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">vertices are also represented as "edges", because a quadEdge object</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">has four edge sub-structures to represent an edge - two substructures</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">for there and back, and the vertices at the ends form a circular</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">linked list.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="QuadEdge"></a><div id="QuadEdge-def"><a name="L18"></a><tt class="py-lineno"> 18</tt> <a class="py-toggle" href="#" id="QuadEdge-toggle" onclick="return toggle('QuadEdge');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.QuadEdge-class.html">QuadEdge</a><tt class="py-op">:</tt> </tt>
+</div><div id="QuadEdge-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="QuadEdge-expanded"><a name="QuadEdge.__init__"></a><div id="QuadEdge.__init__-def"><a name="L19"></a><tt class="py-lineno"> 19</tt> <a class="py-toggle" href="#" id="QuadEdge.__init__-toggle" onclick="return toggle('QuadEdge.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.QuadEdge-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="QuadEdge.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="QuadEdge.__init__-expanded"><a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">edges</tt><tt class="py-op">=</tt><tt class="py-op">(</tt><tt id="link-0" class="py-name" targets="Class MeatEngine.Math.Voronoi.quadedge.Edge=MeatEngine.Math.Voronoi.quadedge.Edge-class.html"><a title="MeatEngine.Math.Voronoi.quadedge.Edge" class="py-name" href="#" onclick="return doclink('link-0', 'Edge', 'link-0');">Edge</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt id="link-1" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge" class="py-name" href="#" onclick="return doclink('link-1', 'Edge', 'link-0');">Edge</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt id="link-2" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge" class="py-name" href="#" onclick="return doclink('link-2', 'Edge', 'link-0');">Edge</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt id="link-3" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge" class="py-name" href="#" onclick="return doclink('link-3', 'Edge', 'link-0');">Edge</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">edges</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">num</tt><tt class="py-op">=</tt><tt class="py-number">0</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">num</tt><tt class="py-op">=</tt><tt class="py-number">1</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">num</tt><tt class="py-op">=</tt><tt class="py-number">2</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">num</tt><tt class="py-op">=</tt><tt class="py-number">3</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">next</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">next</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">next</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">next</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">         </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">         </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">rot</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">rot</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">rot</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">rot</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">invRot</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">invRot</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">invRot</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">invRot</tt><tt class="py-op">=</tt><tt class="py-name">e</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt> </tt>
+</div></div><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">         </tt>
+<a name="Edge"></a><div id="Edge-def"><a name="L46"></a><tt class="py-lineno"> 46</tt> <a class="py-toggle" href="#" id="Edge-toggle" onclick="return toggle('Edge');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html">Edge</a><tt class="py-op">:</tt> </tt>
+</div><div id="Edge-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Edge-expanded"><a name="Edge.__init__"></a><div id="Edge.__init__-def"><a name="L47"></a><tt class="py-lineno"> 47</tt> <a class="py-toggle" href="#" id="Edge.__init__-toggle" onclick="return toggle('Edge.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.__init__-expanded"><a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">num</tt><tt class="py-op">=</tt><tt class="py-number">0</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">next</tt><tt class="py-op">=</tt><tt class="py-name">None</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">=</tt><tt class="py-name">None</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt><tt class="py-op">=</tt><tt class="py-name">None</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">tag</tt><tt class="py-op">=</tt><tt class="py-number">0</tt> </tt>
+</div><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"> </tt>
+<a name="Edge.oNext"></a><div id="Edge.oNext-def"><a name="L54"></a><tt class="py-lineno"> 54</tt> <a class="py-toggle" href="#" id="Edge.oNext-toggle" onclick="return toggle('Edge.oNext');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#oNext">oNext</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.oNext-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.oNext-expanded"><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-docstring">"""next edge ccw with same origin"""</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">next</tt> </tt>
+</div><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"> </tt>
+<a name="Edge.oPrev"></a><div id="Edge.oPrev-def"><a name="L58"></a><tt class="py-lineno"> 58</tt> <a class="py-toggle" href="#" id="Edge.oPrev-toggle" onclick="return toggle('Edge.oPrev');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#oPrev">oPrev</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.oPrev-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.oPrev-expanded"><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-docstring">"""prev edge ccw with same origin"""</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">rot</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method MeatEngine.Math.Voronoi.quadedge.Edge.oNext()=MeatEngine.Math.Voronoi.quadedge.Edge-class.html#oNext"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-4', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">rot</tt> </tt>
+</div><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"> </tt>
+<a name="Edge.dNext"></a><div id="Edge.dNext-def"><a name="L62"></a><tt class="py-lineno"> 62</tt> <a class="py-toggle" href="#" id="Edge.dNext-toggle" onclick="return toggle('Edge.dNext');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#dNext">dNext</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.dNext-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.dNext-expanded"><a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-docstring">"""next edge ccw with the same destination"""</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-5', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt> </tt>
+</div><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"> </tt>
+<a name="Edge.dPrev"></a><div id="Edge.dPrev-def"><a name="L66"></a><tt class="py-lineno"> 66</tt> <a class="py-toggle" href="#" id="Edge.dPrev-toggle" onclick="return toggle('Edge.dPrev');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#dPrev">dPrev</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.dPrev-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.dPrev-expanded"><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-docstring">"""prev edge with the same destination"""</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">invRot</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-6', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">invRot</tt> </tt>
+</div><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="Edge.lNext"></a><div id="Edge.lNext-def"><a name="L70"></a><tt class="py-lineno"> 70</tt> <a class="py-toggle" href="#" id="Edge.lNext-toggle" onclick="return toggle('Edge.lNext');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#lNext">lNext</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.lNext-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.lNext-expanded"><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-docstring">"""next edge around left face of current edge"""</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">invRot</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-7', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">rot</tt> </tt>
+</div><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="Edge.lPrev"></a><div id="Edge.lPrev-def"><a name="L74"></a><tt class="py-lineno"> 74</tt> <a class="py-toggle" href="#" id="Edge.lPrev-toggle" onclick="return toggle('Edge.lPrev');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#lPrev">lPrev</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.lPrev-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.lPrev-expanded"><a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-docstring">"""prev edge around left face of current edge"""</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-8', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="Edge.rNext"></a><div id="Edge.rNext-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="Edge.rNext-toggle" onclick="return toggle('Edge.rNext');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#rNext">rNext</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.rNext-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.rNext-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-docstring">"""next edge around right face of current edge"""</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">rot</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-9', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">invRot</tt> </tt>
+</div><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="Edge.rPrev"></a><div id="Edge.rPrev-def"><a name="L82"></a><tt class="py-lineno"> 82</tt> <a class="py-toggle" href="#" id="Edge.rPrev-toggle" onclick="return toggle('Edge.rPrev');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#rPrev">rPrev</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.rPrev-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.rPrev-expanded"><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-docstring">"""prev edge around right face of current edge"""</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-10', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"> </tt>
+<a name="Edge.org"></a><div id="Edge.org-def"><a name="L86"></a><tt class="py-lineno"> 86</tt> <a class="py-toggle" href="#" id="Edge.org-toggle" onclick="return toggle('Edge.org');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#org">org</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.org-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.org-expanded"><a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-docstring">"""origin of edge"""</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt> </tt>
+</div><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="Edge.dest"></a><div id="Edge.dest-def"><a name="L90"></a><tt class="py-lineno"> 90</tt> <a class="py-toggle" href="#" id="Edge.dest-toggle" onclick="return toggle('Edge.dest');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#dest">dest</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.dest-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.dest-expanded"><a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-docstring">"""destination of edge"""</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt><tt class="py-op">.</tt><tt class="py-name">data</tt> </tt>
+</div><a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"> </tt>
+<a name="Edge.endPoints"></a><div id="Edge.endPoints-def"><a name="L94"></a><tt class="py-lineno"> 94</tt> <a class="py-toggle" href="#" id="Edge.endPoints-toggle" onclick="return toggle('Edge.endPoints');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#endPoints">endPoints</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">org</tt><tt class="py-op">,</tt> <tt class="py-param">dst</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.endPoints-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.endPoints-expanded"><a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-docstring">"""set endpoints"""</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">=</tt><tt id="link-11" class="py-name" targets="Method MeatEngine.Math.Voronoi.quadedge.Edge.org()=MeatEngine.Math.Voronoi.quadedge.Edge-class.html#org"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.org" class="py-name" href="#" onclick="return doclink('link-11', 'org', 'link-11');">org</a></tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt><tt class="py-op">.</tt><tt class="py-name">data</tt><tt class="py-op">=</tt><tt class="py-name">dst</tt> </tt>
+</div><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="Edge.__str__"></a><div id="Edge.__str__-def"><a name="L99"></a><tt class="py-lineno"> 99</tt> <a class="py-toggle" href="#" id="Edge.__str__-toggle" onclick="return toggle('Edge.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge.Edge-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Edge.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Edge.__str__-expanded"><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.org" class="py-name" href="#" onclick="return doclink('link-12', 'org', 'link-11');">org</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">" -&gt; "</tt><tt class="py-op">+</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method MeatEngine.Math.Voronoi.quadedge.Edge.dest()=MeatEngine.Math.Voronoi.quadedge.Edge-class.html#dest"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.dest" class="py-name" href="#" onclick="return doclink('link-13', 'dest', 'link-13');">dest</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="makeEdge"></a><div id="makeEdge-def"><a name="L102"></a><tt class="py-lineno">102</tt> <a class="py-toggle" href="#" id="makeEdge-toggle" onclick="return toggle('makeEdge');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge-module.html#makeEdge">makeEdge</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="makeEdge-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="makeEdge-expanded"><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">    <tt class="py-name">q1</tt> <tt class="py-op">=</tt> <tt id="link-14" class="py-name" targets="Class MeatEngine.Math.Voronoi.quadedge.QuadEdge=MeatEngine.Math.Voronoi.quadedge.QuadEdge-class.html"><a title="MeatEngine.Math.Voronoi.quadedge.QuadEdge" class="py-name" href="#" onclick="return doclink('link-14', 'QuadEdge', 'link-14');">QuadEdge</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">q1</tt><tt class="py-op">.</tt><tt class="py-name">edges</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="splice"></a><div id="splice-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="splice-toggle" onclick="return toggle('splice');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge-module.html#splice">splice</a><tt class="py-op">(</tt><tt class="py-param">a</tt><tt class="py-op">,</tt> <tt class="py-param">b</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="splice-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="splice-expanded"><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">    <tt class="py-name">alpha</tt> <tt class="py-op">=</tt> <tt class="py-name">a</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-15', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">rot</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">    <tt class="py-name">beta</tt>  <tt class="py-op">=</tt> <tt class="py-name">b</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-16', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">rot</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt class="py-name">t1</tt> <tt class="py-op">=</tt> <tt class="py-name">b</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-17', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">    <tt class="py-name">t2</tt> <tt class="py-op">=</tt> <tt class="py-name">a</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-18', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">    <tt class="py-name">t3</tt> <tt class="py-op">=</tt> <tt class="py-name">beta</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-19', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">    <tt class="py-name">t4</tt> <tt class="py-op">=</tt> <tt class="py-name">alpha</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oNext" class="py-name" href="#" onclick="return doclink('link-20', 'oNext', 'link-4');">oNext</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">    <tt class="py-name">a</tt><tt class="py-op">.</tt><tt class="py-name">next</tt><tt class="py-op">=</tt><tt class="py-name">t1</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">    <tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">next</tt><tt class="py-op">=</tt><tt class="py-name">t2</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">    <tt class="py-name">alpha</tt><tt class="py-op">.</tt><tt class="py-name">next</tt><tt class="py-op">=</tt><tt class="py-name">t3</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">    <tt class="py-name">beta</tt><tt class="py-op">.</tt><tt class="py-name">next</tt><tt class="py-op">=</tt><tt class="py-name">t4</tt> </tt>
+</div><a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"> </tt>
+<a name="deleteEdge"></a><div id="deleteEdge-def"><a name="L118"></a><tt class="py-lineno">118</tt> <a class="py-toggle" href="#" id="deleteEdge-toggle" onclick="return toggle('deleteEdge');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.Math.Voronoi.quadedge-module.html#deleteEdge">deleteEdge</a><tt class="py-op">(</tt><tt class="py-param">e</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="deleteEdge-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="deleteEdge-expanded"><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">    <tt id="link-21" class="py-name" targets="Function MeatEngine.Math.Voronoi.quadedge.splice()=MeatEngine.Math.Voronoi.quadedge-module.html#splice"><a title="MeatEngine.Math.Voronoi.quadedge.splice" class="py-name" href="#" onclick="return doclink('link-21', 'splice', 'link-21');">splice</a></tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">,</tt> <tt class="py-name">e</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method MeatEngine.Math.Voronoi.quadedge.Edge.oPrev()=MeatEngine.Math.Voronoi.quadedge.Edge-class.html#oPrev"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oPrev" class="py-name" href="#" onclick="return doclink('link-22', 'oPrev', 'link-22');">oPrev</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">    <tt id="link-23" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.splice" class="py-name" href="#" onclick="return doclink('link-23', 'splice', 'link-21');">splice</a></tt><tt class="py-op">(</tt><tt class="py-name">e</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt><tt class="py-op">,</tt><tt class="py-name">e</tt><tt class="py-op">.</tt><tt class="py-name">sym</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name"><a title="MeatEngine.Math.Voronoi.quadedge.Edge.oPrev" class="py-name" href="#" onclick="return doclink('link-24', 'oPrev', 'link-22');">oPrev</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="MeatEngine-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Jul 28 11:43:46 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

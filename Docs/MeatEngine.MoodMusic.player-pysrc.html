@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>MeatEngine.MoodMusic.player</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="MeatEngine-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="MeatEngine-module.html">Package&nbsp;MeatEngine</a> ::
+        <a href="MeatEngine.MoodMusic-module.html">Package&nbsp;MoodMusic</a> ::
+        Module&nbsp;player
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="MeatEngine.MoodMusic.player-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="MeatEngine.MoodMusic.player-module.html">Module MeatEngine.MoodMusic.player</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">random</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">glob</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"> </tt>
+<a name="Player"></a><div id="Player-def"><a name="L4"></a><tt class="py-lineno">  4</tt> <a class="py-toggle" href="#" id="Player-toggle" onclick="return toggle('Player');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html">Player</a><tt class="py-op">:</tt> </tt>
+</div><div id="Player-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Player-expanded"><a name="Player.__init__"></a><div id="Player.__init__-def"><a name="L5"></a><tt class="py-lineno">  5</tt> <a class="py-toggle" href="#" id="Player.__init__-toggle" onclick="return toggle('Player.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">musicLibrary</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Player.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Player.__init__-expanded"><a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line">         </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line">        <tt class="py-comment"># states will be keyed by name</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">states</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line">         </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line">        <tt class="py-comment"># transitions will be keyed by a tuple (from,to) of names of</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-comment"># the states being transitioned between. Instead of a state</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-comment"># name, None may also be used as a wildcard</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">transitions</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">moodStack</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">musicLibrary</tt><tt class="py-op">=</tt><tt class="py-name">musicLibrary</tt> </tt>
+</div><a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"> </tt>
+<a name="Player.addState"></a><div id="Player.addState-def"><a name="L19"></a><tt class="py-lineno"> 19</tt> <a class="py-toggle" href="#" id="Player.addState-toggle" onclick="return toggle('Player.addState');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html#addState">addState</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">name</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Player.addState-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Player.addState-expanded"><a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">        <tt class="py-keyword">assert</tt> <tt class="py-name">name</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">states</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">states</tt><tt class="py-op">[</tt><tt class="py-name">name</tt><tt class="py-op">]</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="Player.addTransition"></a><div id="Player.addTransition-def"><a name="L24"></a><tt class="py-lineno"> 24</tt> <a class="py-toggle" href="#" id="Player.addTransition-toggle" onclick="return toggle('Player.addTransition');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html#addTransition">addTransition</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">fromState</tt><tt class="py-op">,</tt> <tt class="py-param">toState</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Player.addTransition-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Player.addTransition-expanded"><a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">        <tt class="py-name">pair</tt><tt class="py-op">=</tt><tt class="py-op">(</tt><tt class="py-name">fromState</tt><tt class="py-op">,</tt><tt class="py-name">toState</tt><tt class="py-op">)</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">        <tt class="py-keyword">assert</tt> <tt class="py-name">pair</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">transitions</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">transitions</tt><tt class="py-op">[</tt><tt class="py-name">pair</tt><tt class="py-op">]</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"> </tt>
+<a name="Player.addMusicToState"></a><div id="Player.addMusicToState-def"><a name="L30"></a><tt class="py-lineno"> 30</tt> <a class="py-toggle" href="#" id="Player.addMusicToState-toggle" onclick="return toggle('Player.addMusicToState');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html#addMusicToState">addMusicToState</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">stateName</tt><tt class="py-op">,</tt> <tt class="py-param">trackName</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Player.addMusicToState-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Player.addMusicToState-expanded"><a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">states</tt><tt class="py-op">[</tt><tt class="py-name">stateName</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">trackName</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="Player.addMusicDirectoryToState"></a><div id="Player.addMusicDirectoryToState-def"><a name="L33"></a><tt class="py-lineno"> 33</tt> <a class="py-toggle" href="#" id="Player.addMusicDirectoryToState-toggle" onclick="return toggle('Player.addMusicDirectoryToState');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html#addMusicDirectoryToState">addMusicDirectoryToState</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">stateName</tt><tt class="py-op">,</tt> <tt class="py-param">directoryName</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Player.addMusicDirectoryToState-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Player.addMusicDirectoryToState-expanded"><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-name">exts</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">"*.mp3"</tt><tt class="py-op">,</tt> <tt class="py-string">"*.wav"</tt><tt class="py-op">,</tt> <tt class="py-string">"*.mid"</tt><tt class="py-op">,</tt> <tt class="py-string">"*.ogg"</tt><tt class="py-op">]</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">e</tt> <tt class="py-keyword">in</tt> <tt class="py-name">exts</tt><tt class="py-op">:</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">            <tt class="py-name">g</tt><tt class="py-op">=</tt><tt class="py-name">directoryName</tt><tt class="py-op">+</tt><tt class="py-string">"/"</tt><tt class="py-op">+</tt><tt class="py-name">e</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">gn</tt> <tt class="py-keyword">in</tt> <tt class="py-name">glob</tt><tt class="py-op">.</tt><tt class="py-name">glob</tt><tt class="py-op">(</tt><tt class="py-name">g</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">states</tt><tt class="py-op">[</tt><tt class="py-name">stateName</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">gn</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">             </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="Player.addMusicToTransition"></a><div id="Player.addMusicToTransition-def"><a name="L41"></a><tt class="py-lineno"> 41</tt> <a class="py-toggle" href="#" id="Player.addMusicToTransition-toggle" onclick="return toggle('Player.addMusicToTransition');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html#addMusicToTransition">addMusicToTransition</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">fromName</tt><tt class="py-op">,</tt> <tt class="py-param">toName</tt><tt class="py-op">,</tt> <tt class="py-param">trackName</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Player.addMusicToTransition-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Player.addMusicToTransition-expanded"><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">transitions</tt><tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-name">fromName</tt><tt class="py-op">,</tt><tt class="py-name">toName</tt><tt class="py-op">)</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">trackName</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"> </tt>
+<a name="Player.addMusicDirectoryToTransition"></a><div id="Player.addMusicDirectoryToTransition-def"><a name="L44"></a><tt class="py-lineno"> 44</tt> <a class="py-toggle" href="#" id="Player.addMusicDirectoryToTransition-toggle" onclick="return toggle('Player.addMusicDirectoryToTransition');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html#addMusicDirectoryToTransition">addMusicDirectoryToTransition</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">fromName</tt><tt class="py-op">,</tt> <tt class="py-param">toName</tt><tt class="py-op">,</tt> <tt class="py-param">directoryName</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Player.addMusicDirectoryToTransition-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Player.addMusicDirectoryToTransition-expanded"><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-name">exts</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-string">"*.mp3"</tt><tt class="py-op">,</tt> <tt class="py-string">"*.wav"</tt><tt class="py-op">,</tt> <tt class="py-string">"*.mid"</tt><tt class="py-op">,</tt> <tt class="py-string">"*.ogg"</tt><tt class="py-op">]</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">e</tt> <tt class="py-keyword">in</tt> <tt class="py-name">exts</tt><tt class="py-op">:</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">            <tt class="py-name">g</tt><tt class="py-op">=</tt><tt class="py-name">directoryName</tt><tt class="py-op">+</tt><tt class="py-string">"/"</tt><tt class="py-op">+</tt><tt class="py-name">e</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">gn</tt> <tt class="py-keyword">in</tt> <tt class="py-name">glob</tt><tt class="py-op">.</tt><tt class="py-name">glob</tt><tt class="py-op">(</tt><tt class="py-name">g</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">transitions</tt><tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-name">fromName</tt><tt class="py-op">,</tt><tt class="py-name">toName</tt><tt class="py-op">)</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">gn</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">             </tt>
+<a name="Player.getState"></a><div id="Player.getState-def"><a name="L51"></a><tt class="py-lineno"> 51</tt> <a class="py-toggle" href="#" id="Player.getState-toggle" onclick="return toggle('Player.getState');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html#getState">getState</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Player.getState-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Player.getState-expanded"><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">moodStack</tt><tt class="py-op">)</tt><tt class="py-op">==</tt><tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">moodStack</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">         </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="Player.setState"></a><div id="Player.setState-def"><a name="L57"></a><tt class="py-lineno"> 57</tt> <a class="py-toggle" href="#" id="Player.setState-toggle" onclick="return toggle('Player.setState');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html#setState">setState</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">stateName</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Player.setState-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Player.setState-expanded"><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring">        You might instead want to use pushState, which handles</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">        transitions</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">moodStack</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-name">stateName</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="Player.pushState"></a><div id="Player.pushState-def"><a name="L64"></a><tt class="py-lineno"> 64</tt> <a class="py-toggle" href="#" id="Player.pushState-toggle" onclick="return toggle('Player.pushState');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html#pushState">pushState</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">stateName</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Player.pushState-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Player.pushState-expanded"><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">        this adds a state to the end of the current mood stack -</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">        transitions will be played to get the player to the</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">        destination</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"pushing transition to:"</tt><tt class="py-op">,</tt><tt class="py-name">stateName</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">moodStack</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">stateName</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="Player.tick"></a><div id="Player.tick-def"><a name="L73"></a><tt class="py-lineno"> 73</tt> <a class="py-toggle" href="#" id="Player.tick-toggle" onclick="return toggle('Player.tick');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="MeatEngine.MoodMusic.player.Player-class.html#tick">tick</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Player.tick-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Player.tick-expanded"><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">        if the music is still playing, do nothing.</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">        if we're at the end of a song, if there's only one state on</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">        the stack, pick a new song.</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt class="py-docstring">        if there's more than one state, look at the top two - if there</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring">        is a transition, play that transition.</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-docstring">        otherwise, if there's a wildcard transition, play that</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">        otherwise, simply jump to the new state, and play a song</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">        randomly there.</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">        pop the top state off</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">musicLibrary</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Method MeatEngine.MoodMusic.libraryPyGame.LibraryPyGame.isPlaying()=MeatEngine.MoodMusic.libraryPyGame.LibraryPyGame-class.html#isPlaying"><a title="MeatEngine.MoodMusic.libraryPyGame.LibraryPyGame.isPlaying" class="py-name" href="#" onclick="return doclink('link-0', 'isPlaying', 'link-0');">isPlaying</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">            <tt class="py-comment">#print "is playing"</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-keyword">return</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-name">numMoods</tt><tt class="py-op">=</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">moodStack</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">"moodStack size:"</tt><tt class="py-op">,</tt><tt class="py-name">numMoods</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">         </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">numMoods</tt><tt class="py-op">==</tt><tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">numMoods</tt><tt class="py-op">==</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">            <tt class="py-name">newTrack</tt><tt class="py-op">=</tt><tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">choice</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">states</tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">moodStack</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">musicLibrary</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method MeatEngine.MoodMusic.libraryPyGame.LibraryPyGame.play()=MeatEngine.MoodMusic.libraryPyGame.LibraryPyGame-class.html#play"><a title="MeatEngine.MoodMusic.libraryPyGame.LibraryPyGame.play" class="py-name" href="#" onclick="return doclink('link-1', 'play', 'link-1');">play</a></tt><tt class="py-op">(</tt><tt class="py-name">newTrack</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-name">oldMood</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">moodStack</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-name">newMood</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">moodStack</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">moodStack</tt><tt class="py-op">=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">moodStack</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-name">possTransitions</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-name">oldMood</tt><tt class="py-op">,</tt><tt class="py-name">newMood</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">                         <tt class="py-op">(</tt><tt class="py-name">oldMood</tt><tt class="py-op">,</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">                         <tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">,</tt><tt class="py-name">newMood</tt><tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line"> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">pt</tt> <tt class="py-keyword">in</tt> <tt class="py-name">possTransitions</tt><tt class="py-op">:</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">pt</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">transitions</tt><tt class="py-op">:</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">                <tt class="py-name">newTrack</tt><tt class="py-op">=</tt><tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">choice</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">transitions</tt><tt class="py-op">[</tt><tt class="py-name">pt</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">musicLibrary</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name"><a title="MeatEngine.MoodMusic.libraryPyGame.LibraryPyGame.play" class="py-name" href="#" onclick="return doclink('link-2', 'play', 'link-1');">play</a></tt><tt class="py-op">(</tt><tt class="py-name">newTrack</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-comment"># otherwise, there's no transition - just play a random song</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-comment"># from the new state</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"><tt class="py-comment"></tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-name">newTrack</tt><tt class="py-op">=</tt><tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">choice</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">states</tt><tt class="py-op">[</tt><tt class="py-name">newMood</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">musicLibrary</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name"><a title="MeatEngine.MoodMusic.libraryPyGame.LibraryPyGame.play" class="py-name" href="#" onclick="return doclink('link-3', 'play', 'link-1');">play</a></tt><tt class="py-op">(</tt><tt class="py-name">newTrack</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="MeatEngine-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Jul 28 11:43:46 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>
