@@ -11,6 +11,10 @@ pip install pygame -U
 pip install PyOpenGL -U  
 pip install PyOpenGL-accelerate -U  
 
+### Start the script  
+cd FlightSim  
+python main.py  
+  
 ### How to control a paper airplane:  
   
 - Put the mouse cursor within the flight simulator screen.  
