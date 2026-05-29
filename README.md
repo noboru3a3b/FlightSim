@@ -13,7 +13,7 @@ pip install PyOpenGL-accelerate -U
 
 ### How to control a paper airplane:  
   
-- Move the mouse cursor within the flight simulator screen.  
+- Put the mouse cursor within the flight simulator screen.  
   
 - Move the mouse cursor up ---> The nose of the plane will lower.  
 - Move the mouse cursor down ---> The nose of the plane will rise.  
