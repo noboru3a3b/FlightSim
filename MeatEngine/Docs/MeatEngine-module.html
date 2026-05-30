@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>MeatEngine</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;MeatEngine
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="MeatEngine-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PACKAGE DESCRIPTION ==================== -->
+<h1 class="epydoc">Package MeatEngine</h1><span class="codelink"><a href="MeatEngine-pysrc.html">source&nbsp;code</a></span><br /><br />
+<p>Meat Engine</p>
+<p>Copyright (C) 2007, Big Dice Games</p>
+<p>One practical definition of a &quot;game engine&quot; is &quot;the code you reuse on
+your second game&quot;. That's mostly tongue-in-cheek, but it isn't far
+from the philosophy of what's currently included in MeatEngine.</p>
+<p>I've included a variety of pieces of code, not because they're all
+appropriate for the game you want to make, and they're certainly not
+all appropriate for any particular game, but instead, each piece might
+be useful for some game, or for some game-related-project.</p>
+<p>MeatEngine is more of a toolbox than a framework - you're responsible
+for the main loop of your program. Some of the code makes certain
+assumptions about being called periodically. This should not be
+difficult to handle, regardless of the structure of your game.</p>
+<p>Included (currently) are modules for adaptive music, GUI display, AI,
+and low-level math. Also included is the beginnings of a ray tracer -
+not that you'd want to use a ray tracer in your game (certainly not
+this ray tracer, anyway), but it may be of benefit in creating
+assets. Also, it serves as a test harness for the math module.</p>
+<div class="rst-section" id="rst-version-history">
+<h1 class="heading">Version History</h1>
+<p>0.0.1 - Initial packaging in advance of PyWeek5</p>
+</div><br /><br />
+
+<hr />
+<div class="fields">      <p><strong>Version:</strong>
+        0.0.1
+      </p>
+</div><!-- ==================== SUBMODULES ==================== -->
+<a name="section-Submodules"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Submodules</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Submodules"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr><td class="summary">
+  <ul class="nomargin">
+    <li> <strong class="uidlink"><a href="MeatEngine.AI-module.html">MeatEngine.AI</a></strong>: <em class="summary">Meat Engine AI Package</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="MeatEngine.AI.boardRep-module.html">MeatEngine.AI.boardRep</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.AI.humanPlayer-module.html">MeatEngine.AI.humanPlayer</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.AI.makeTicTacToeBook-module.html">MeatEngine.AI.makeTicTacToeBook</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.AI.mtdf-module.html">MeatEngine.AI.mtdf</a></strong>: <em class="summary">MTD(f)</em>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.AI.randomPlayer-module.html">MeatEngine.AI.randomPlayer</a></strong>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.Logic-module.html">MeatEngine.Logic</a></strong>: <em class="summary">Meat Engine Logic module</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="MeatEngine.Logic.fsmMgr-module.html">MeatEngine.Logic.fsmMgr</a></strong>: <em class="summary">Meat Engine Hierarchical Finite State Machine (hFSM) Manager</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.Math-module.html">MeatEngine.Math</a></strong>: <em class="summary">Meat Engine Math Utilities</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="MeatEngine.Math.Voronoi-module.html">MeatEngine.Math.Voronoi</a></strong>: <em class="summary">Meat Engine Voronoi/Delaunay Map Generator</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="MeatEngine.Math.Voronoi.predicates-module.html">MeatEngine.Math.Voronoi.predicates</a></strong>: <em class="summary">Voronoi/Delaunay predicates</em>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.Math.Voronoi.quadedge-module.html">MeatEngine.Math.Voronoi.quadedge</a></strong>: <em class="summary">Quadedge data structure, after Guibas and Stolfi</em>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.Math.Voronoi.subdivision-module.html">MeatEngine.Math.Voronoi.subdivision</a></strong>: <em class="summary">Voronoi/Delaunay Subdivision code</em>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.Math.Voronoi.test-module.html">MeatEngine.Math.Voronoi.test</a></strong>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.Math.vector-module.html">MeatEngine.Math.vector</a></strong>: <em class="summary">Meat Engine Vector Library</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.MoodMusic-module.html">MeatEngine.MoodMusic</a></strong>: <em class="summary">Meat Engine Mood Music</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="MeatEngine.MoodMusic.libraryPyGame-module.html">MeatEngine.MoodMusic.libraryPyGame</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.MoodMusic.player-module.html">MeatEngine.MoodMusic.player</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.MoodMusic.test-module.html">MeatEngine.MoodMusic.test</a></strong>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.RayTrace-module.html">MeatEngine.RayTrace</a></strong>: <em class="summary">Meat Engine Ray Tracing Facility</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="MeatEngine.RayTrace.intersect-module.html">MeatEngine.RayTrace.intersect</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.RayTrace.light-module.html">MeatEngine.RayTrace.light</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.RayTrace.test-module.html">MeatEngine.RayTrace.test</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.RayTrace.triangle-module.html">MeatEngine.RayTrace.triangle</a></strong>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.Widgets-module.html">MeatEngine.Widgets</a></strong>: <em class="summary">Meat Engine Widget Set</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="MeatEngine.Widgets.wordWrap-module.html">MeatEngine.Widgets.wordWrap</a></strong>: <em class="summary">Meat Engine Word Wrap code</em>    </li>
+    </ul>
+    </li>
+  </ul></td></tr>
+</table>
+
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Jul 28 11:43:45 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

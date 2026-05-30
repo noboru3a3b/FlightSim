@@ -1,0 +1,38 @@
+<html><head><title>Epydoc Redirect Page</title>
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+<!--
+var pages = ["MeatEngine.AI.randomPlayer.RandomTicTacToePlayer-c", "MeatEngine.MoodMusic.libraryPyGame.LibraryPyGame-c", "MeatEngine.Math.Voronoi.subdivision.Subdivision-c", "MeatEngine.AI.humanPlayer.HumanTicTacToePlayer-c", "MeatEngine.AI.mtdf.TranspositionTableEntry-c", "MeatEngine.RayTrace.intersect.Intersection-c", "MeatEngine.RayTrace.light.DirectionalLight-c", "MeatEngine.Math.Voronoi.quadedge.QuadEdge-c", "MeatEngine.AI.boardRep.TicTacToeBoard-c", "MeatEngine.AI.mtdf.TranspositionTable-c", "MeatEngine.Math.Voronoi.quadedge.Edge-c", "MeatEngine.RayTrace.light.PointLight-c", "MeatEngine.Math.Voronoi.subdivision-m", "MeatEngine.Math.Voronoi.predicates-m", "MeatEngine.MoodMusic.libraryPyGame-m", "MeatEngine.MoodMusic.player.Player-c", "MeatEngine.Math.Voronoi.quadedge-m", "MeatEngine.AI.makeTicTacToeBook-m", "MeatEngine.RayTrace.intersect-m", "MeatEngine.Logic.fsmMgr.State-c", "MeatEngine.Math.Voronoi.test-m", "MeatEngine.RayTrace.triangle-m", "MeatEngine.Math.vector.Vec2f-c", "MeatEngine.Math.vector.Vec3f-c", "MeatEngine.MoodMusic.player-m", "MeatEngine.Widgets.wordWrap-m", "MeatEngine.AI.randomPlayer-m", "MeatEngine.AI.humanPlayer-m", "MeatEngine.MoodMusic.test-m", "MeatEngine.RayTrace.light-m", "MeatEngine.RayTrace.test-m", "MeatEngine.Logic.fsmMgr-m", "MeatEngine.Math.Voronoi-m", "MeatEngine.AI.boardRep-m", "MeatEngine.Math.vector-m", "MeatEngine.MoodMusic-m", "MeatEngine.RayTrace-m", "MeatEngine.AI.mtdf-m", "MeatEngine.Widgets-m", "MeatEngine.Logic-m", "MeatEngine.Math-m", "MeatEngine.AI-m", "MeatEngine-m"];
+var dottedName = get_anchor();
+if (dottedName) {
+    var target = redirect_url(dottedName);
+    if (target) window.location.replace(target);
+}
+// -->
+</script>
+
+<h3>Epydoc Auto-redirect page</h3>
+
+<p>When javascript is enabled, this page will redirect URLs of
+the form <tt>redirect.html#<i>dotted.name</i></tt> to the
+documentation for the object with the given fully-qualified
+dotted name.</p>
+<p><a id="message"> &nbsp; </a></p>
+
+<script type="text/javascript">
+<!--
+if (dottedName) {
+    var msg = document.getElementById("message");
+    msg.innerHTML = "No documentation found for <tt>"+
+                    dottedName+"</tt>";
+}
+// -->
+</script>
+
+</body>
+</html>

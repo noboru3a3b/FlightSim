@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>MeatEngine.MoodMusic</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="MeatEngine-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="MeatEngine-module.html">Package&nbsp;MeatEngine</a> ::
+        Package&nbsp;MoodMusic
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="MeatEngine.MoodMusic-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PACKAGE DESCRIPTION ==================== -->
+<h1 class="epydoc">Package MoodMusic</h1><span class="codelink"><a href="MeatEngine.MoodMusic-pysrc.html">source&nbsp;code</a></span><br /><br />
+<p>Meat Engine Mood Music</p>
+  <p>MeatEngine.MoodMusic is a module for selecting music adaptively based 
+  on the mood of the game. It is intended to support multiple players 
+  (PyGame, BASS, FMod, OpenAL), but only PyGame's sound system is currently
+  supported.</p>
+  <p>Each distinct &quot;state&quot; that the game can be in is called a 
+  &quot;mood&quot;. Music can be associated with a mood, or with a 
+  transition between moods.</p>
+  <p>At initialization time, first create an instance of the library 
+  wrapper object (currently LibraryPyGame is the only one supported). Then 
+  create a player object with the library as an argument.</p>
+  <p>You then define the states (&quot;moods&quot;) by calling addState on 
+  the player object. You may add transitions between states if you plan on 
+  using this feature. If you do not want music playing between states, you 
+  don't need to set them up.</p>
+  <p>Next, assign music to the states and transitions (if any). This can be
+  done a directory at a time with addMusicDirectoryToState and 
+  addMusicDirectoryToTransition. There are also methods to add individual 
+  files to states or transitions.</p>
+  <p>Finally, call setState() to establish the initial state.</p>
+  <p>At runtime, call the player's tick() function periodically (once per 
+  frame is convenient, but if you call it less frequently, you may get gaps
+  in your transitions). When a song ends, the player checks the current 
+  mood and plays an appropriate song.</p>
+  <p>Moods can be changed by either calling setState() or pushState(). When
+  calling setState(), you are strictly controlling the mood of the next 
+  song (the current song still plays to completion). This may be useful for
+  states that change frequently, more often than the length of a song.</p>
+  Alternately, you can use pushState(), and the player will maintain a 
+  stack of states. As a song finishes, if the stack is more than one mood 
+  deep, the player will see if a transition has been established for those 
+  two states, and it will play a song from the list associated with that 
+  transtion. When the transition song is finished, the stack is again 
+  inspected. If there are still more than one mood deep, another transition
+  is played, until the stack is down to a single mood.<br /><br />
+
+<!-- ==================== SUBMODULES ==================== -->
+<a name="section-Submodules"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Submodules</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Submodules"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr><td class="summary">
+  <ul class="nomargin">
+    <li> <strong class="uidlink"><a href="MeatEngine.MoodMusic.libraryPyGame-module.html">MeatEngine.MoodMusic.libraryPyGame</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.MoodMusic.player-module.html">MeatEngine.MoodMusic.player</a></strong>    </li>
+    <li> <strong class="uidlink"><a href="MeatEngine.MoodMusic.test-module.html">MeatEngine.MoodMusic.test</a></strong>    </li>
+  </ul></td></tr>
+</table>
+
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="MeatEngine-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Jul 28 11:43:45 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>
