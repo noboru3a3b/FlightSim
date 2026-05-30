@@ -28,3 +28,5 @@ python main.py
   
 - Put the mouse cursor in the console and press Ctrl+C ---> Game over  
   
+![ゲーム画像](./Screenshot from 2026-05-27 13-01-28.png)
+
