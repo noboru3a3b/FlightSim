@@ -28,5 +28,6 @@ python main.py
   
 - Put the mouse cursor in the console and press Ctrl+C ---> Game over  
   
-![ゲーム画像](./sample.png)
+  
+![Game image](./sample.png)
 
