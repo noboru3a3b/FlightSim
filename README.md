@@ -1,5 +1,5 @@
 ## Game image:  
-![Game image](./sample.png)
+![Game image](./sample2.png)
   
 This is a "paper airplane flight simulator" that I found on the Pygame website (https://www.pygame.org/) over a decade ago.  
 Since it's no longer on the Pygame website, I've decided to post it here as a cultural heritage.  
