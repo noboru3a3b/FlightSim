@@ -21,10 +21,10 @@ python main.py
   
 - Move the mouse cursor up ---> The nose of the plane will lower.  
 - Move the mouse cursor down ---> The nose of the plane will rise.  
-- Move the mouse cursor to the right ---> The plane will tilt to the right.  
-- Move the mouse cursor to the left ---> The plane will tilt to the left.  
+- Move the mouse cursor right ---> The plane will tilt to the right.  
+- Move the mouse cursor left ---> The plane will tilt to the left.  
   
 - Control the paper airplane and fly through the cubes floating in the air (this will earn you points).  
   
-- Place the mouse cursor in the console and press Ctrl+C ---> Game over  
+- Put the mouse cursor in the console and press Ctrl+C ---> Game over  
   
